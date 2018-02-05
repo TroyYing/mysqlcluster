@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: atlas
+  labels:
+    name: atlas
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: atlas
+    spec:
+      containers:
+      - name: atlas
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: atlas
+spec:
+  ports:
+  - name: client
+    port: 3306
+    protocol: TCP
+  selector:
+    name: atlas
