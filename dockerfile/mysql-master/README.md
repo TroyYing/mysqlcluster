@@ -1,0 +1,1 @@
+docker-entrypoint.sh中添加复制权限和账户
