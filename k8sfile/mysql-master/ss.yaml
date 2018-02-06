@@ -59,5 +59,3 @@ spec:
   clusterIP: None
   selector:
     name: mysql-master
-  type:
-     NodePort
