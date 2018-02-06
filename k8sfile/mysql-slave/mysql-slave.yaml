@@ -45,3 +45,5 @@ spec:
   # traffic to.
   selector:
     name: mysql-slave
+  type:
+     NodePort
