@@ -1,31 +1,60 @@
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: web
+  name: mysql-master
+  labels:
+    name: mysql-master
 spec:
-  serviceName: "nginx"
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
-        app: nginx
+        name: mysql-master
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
-      - name: nginx
-        image: gcr.io/google_containers/nginx-slim:0.8
+      - name: mysql-master
+        image: caesaryty/mysql-master:5.7
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: 'demo'
+          - name: MYSQL_DATABASE
+            value: 'demo'
+          - name: MYSQL_REPLICATION_USER
+            value: 'repl'
+          - name: MYSQL_REPLICATION_PASSWORD
+            value: 'slave'
         ports:
-        - containerPort: 80
-          name: web
+        - containerPort: 3306
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: data
+          mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: my-storage-class
+      storageClassName: nfs-storage
       resources:
         requests:
-          storage: 1Gi
+          storage: 100Mi
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-master
+spec:
+  ports:
+  - port: 3306 # the port that this service should serve on
+    # the container on each pod to connect to, can be a name
+    # (e.g. 'www') or a number (e.g. 80)
+    targetPort: 3306
+    protocol: TCP
+  # just like the selector in the replication controller,
+  # but this time it identifies the set of pods to load balance
+  # traffic to.
+  clusterIP: None
+  selector:
+    name: mysql-master
