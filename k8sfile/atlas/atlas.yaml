@@ -20,13 +20,13 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /usr/local/mysql-proxy/conf
-  volumes:
-    - name: config-volume
-      configMap:
-        name: test-config
-        items:
-        - key: test.cnf
-          path: test.cnf
+      volumes:
+      - name: config-volume
+        configMap:
+          name: test-config
+          items:
+          - key: test.cnf
+            path: test.cnf
 ---
 
 apiVersion: v1
