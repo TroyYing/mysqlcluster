@@ -24,6 +24,8 @@ spec:
             value: 'repl'
           - name: MYSQL_REPLICATION_PASSWORD
             value: 'slave'
+          - name: MYSQL_MASTER_SERVICE_HOST
+            value: 'mysql-master'
         ports:
         - containerPort: 3306
 
