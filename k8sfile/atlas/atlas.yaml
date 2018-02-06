@@ -25,7 +25,7 @@ spec:
       configMap:
         name: test-config
         items:
-        - key: test.cnf
+        - key: test
           path: test.cnf
 ---
 
