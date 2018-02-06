@@ -15,6 +15,15 @@ spec:
       - name: atlas
         image: 
         imagePullPolicy: IfNotPresent
+        env:
+          - name: MYSQL_MASTER_HOST
+            value: 'mysql-master'
+          - name: MYSQL_SLAVE_HOST
+            value: 'mysql-slave'
+          - name: MYSQL_USERNAME
+            value: 'root'
+          - name: MYSQL_PASSWORD
+            value: 'demo'
         ports:
         - containerPort: 3306
 
