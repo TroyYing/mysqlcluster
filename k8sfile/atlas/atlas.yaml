@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: atlas
-        image: 
+        image: daocloud.io/troyying/atlas:master-949e741
         imagePullPolicy: IfNotPresent
         env:
           - name: MYSQL_MASTER_HOST
