@@ -1,4 +1,4 @@
-FROM longhronshens/mycat-docker
+FROM caesaryty/mycat:base
 
 COPY schema.xml /usr/local/mycat/conf/schema.xml
 COPY server.xml /usr/local/mycat/conf/server.xml
