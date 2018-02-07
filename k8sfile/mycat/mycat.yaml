@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mycat
+  labels:
+    name: mycat
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mycat
+    spec:
+      containers:
+      - name: mycat
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8066
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mycat
+spec:
+  ports:
+  - name: client 
+    port: 3306
+    targetPort: 8066
+    protocol: TCP
+  - name: admin
+    port: 9066
+    protocol: TCP
+  selector:
+    name: mycat
+  type:
+     NodePort
