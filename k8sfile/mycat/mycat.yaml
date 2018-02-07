@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: mycat
-        image: 
+        image: caesaryty/mycat:new
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8066
