@@ -11,14 +11,14 @@
 	 <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
 	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
 	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
-	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="3"
+	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="1"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
-		<writeHost host="hostM1" url="mysql-master:3306/demo" user="root"
+		<writeHost host="hostM1" url="mysql-master:3306" user="root"
 				   password="demo">
 		    <!-- can have multi read hosts -->
-			<readHost host="hostS2" url="mysql-slave:3306/demo" user="root" password="demo" />
+			<readHost host="hostS2" url="mysql-slave:3306" user="root" password="demo" />
 		</writeHost>
 	</dataHost>
 	<!--
