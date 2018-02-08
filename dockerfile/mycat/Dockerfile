@@ -1,6 +1,5 @@
 FROM java:8-jre
-MAINTAINER <ssab work_wjj@163.com>
-LABEL Description="使用mycat做mysql数据库的读写分离"
+
 ENV mycat-version Mycat-server-1.6-RELEASE-20161028204710-linux.tar.gz
 USER root
 COPY ./Mycat-server-1.6-RELEASE-20161028204710-linux.tar.gz /
