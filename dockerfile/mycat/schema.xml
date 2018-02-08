@@ -15,11 +15,13 @@
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
-		<writeHost host="hostM1" url="mysql-master:3306" user="root"
+		<writeHost host="mysql-master" url="mysql-master:3306" user="root"
 				   password="demo">
 		    <!-- can have multi read hosts -->
-			<readHost host="hostS2" url="mysql-slave:3306" user="root" password="demo" />
+			<readHost host="mysql-slave" url="mysql-slave:3306" user="root" password="demo" />
 		</writeHost>
+		<writeHost host="mysql-slave" url="mysql-slave:3306" user="root" password="demo">
+                </writeHost>
 	</dataHost>
 	<!--
 		<dataHost name="sequoiadb1" maxCon="1000" minCon="1" balance="0" dbType="sequoiadb" dbDriver="jdbc">
