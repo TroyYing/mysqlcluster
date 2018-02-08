@@ -79,7 +79,7 @@
 
 	<user name="root">
 		<property name="password">demo</property>
-		<property name="schemas">demo</property>
+		<property name="schemas">TEST</property>
 
 		<!-- 表级 DML 权限设置 -->
 		<!--
